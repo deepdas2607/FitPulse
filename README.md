@@ -221,9 +221,3 @@ FitPulse.AI is built as an **intelligent, safety-first wellness companion** usin
 
 > **That’s how we’re shaping FitPulse to be intelligent and safe.**
 
----
-
-If you want, I can also:
-✅ Add a **project structure section**
-✅ Create a **lightweight README (1-page)** for quick judging
-✅ Add **contribution guidelines**
