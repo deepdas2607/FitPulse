@@ -1,7 +1,0 @@
-{
-  "name": "FitPulse",
-  "description": "A modern, interactive health and fitness tracking application featuring AI-ready dashboards and a vibrant user experience.",
-  "requestFramePermissions": [
-    "camera"
-  ]
-}
