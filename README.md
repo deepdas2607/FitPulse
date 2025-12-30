@@ -1,13 +1,22 @@
-# 💪 FitPulse - AI-Powered Fitness & Health Platform
+# 💪 FitPulse – AI-Powered Fitness & Health Platform
 
 <div align="center">
 
 **Your Personal AI Fitness Coach & Health Companion**
 
-[![React](https://img.shields.io/badge/React-19-blue.svg)](https://reactjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue.svg)](https://www.typescriptlang.org/)
-[![MediaPipe](https://img.shields.io/badge/MediaPipe-Pose-green.svg)](https://google.github.io/mediapipe/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Track](https://img.shields.io/badge/Track-Open%20Innovation-blueviolet)]()
+[![Built with Kiro IDE](https://img.shields.io/badge/Built_with-Kiro_IDE-orange)]()
+[![Status](https://img.shields.io/badge/Status-Demo_Ready-brightgreen)]()
+[![AI](https://img.shields.io/badge/AI-Client--Side_Computer_Vision-success)]()
+
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-Build-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-Styling-38B2AC?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![MediaPipe](https://img.shields.io/badge/MediaPipe-Pose-0F9D58?logo=google&logoColor=white)](https://google.github.io/mediapipe/)
+[![Tesseract.js](https://img.shields.io/badge/Tesseract.js-OCR-5A2D82)](https://tesseract.projectnaptha.com/)
+[![Firebase](https://img.shields.io/badge/Firebase-Backend-FFCA28?logo=firebase&logoColor=black)](https://firebase.google.com/)
+
 
 </div>
 
@@ -15,292 +24,220 @@
 
 ## 🎯 What is FitPulse?
 
-FitPulse is an AI-powered fitness and health platform that uses computer vision, voice recognition, and intelligent algorithms to provide real-time workout feedback, nutrition analysis, and personalized health recommendations - all running locally in your browser with **zero API keys required**.
+**FitPulse** is an AI-powered fitness and health platform that combines **real-time posture correction, workout safety, nutrition analysis, and wellness intelligence** into one unified system.
 
-### ✨ Key Highlights
-
-- 🎥 **Real-time AI Form Correction** - MediaPipe Pose detects and corrects your exercise form
-- 🔢 **Automatic Rep Counting** - No manual tracking needed
-- 🗣️ **Virtual Spotter** - Voice-activated emergency detection
-- 📸 **Food Label Scanner** - OCR-powered nutrition analysis
-- 🎯 **Adaptive Intensity** - Personalized workout recommendations
-- 🔔 **Habit Builder** - Smart reminders for healthy habits
-- 📊 **Weekly Reports** - Comprehensive progress tracking
-- 🔒 **Privacy First** - All processing happens locally
+Unlike traditional fitness apps that only track workouts, FitPulse focuses on **safe, adaptive, and preventive wellness**, running **directly in the browser with no paid APIs required**.
 
 ---
 
-## 🚀 Quick Start
+## ❗ Problem We Address
+
+Today’s fitness and health ecosystem is fragmented:
+
+* Fitness apps don’t correct posture → injuries happen
+* No safety system for people exercising alone at home
+* Nutrition labels are confusing for everyday users
+* Workouts are generic and ignore stress or fatigue
+* Users juggle multiple apps for fitness, food, and health
+
+This leads to unsafe workouts, burnout, and poor health decisions.
+
+---
+
+## 💡 Our Solution
+
+**FitPulse brings fitness, health, nutrition, and safety together in one AI-driven platform.**
+
+We focus on:
+
+* Correct exercise posture and injury prevention
+* Emergency safety during solo workouts
+* Simple nutrition understanding using AI
+* Stress-adaptive workout recommendations
+* Preventive health awareness instead of reactive care
+
+---
+
+## 🖼️ Screenshots
+
+### Landing Page
+
+![Landing Page](assets/landing-page.png)
+
+### Health Dashboard
+
+![Health Dashboard](assets/health-dashboard.png)
+
+### AI Form Correction (Fitness Tracker)
+
+![Fitness Tracker](assets/fitness-tracker.png)
+
+---
+
+## ⭐ Core Features (MVP Focus)
+
+### 🏋️ AI Fitness & Safety
+
+* **AI Posture Detection & Form Correction**
+  Detects incorrect posture using pose estimation and joint-angle rules.
+
+* **Automatic Rep Counting**
+  Counts repetitions in real time without manual input.
+
+* **Post-Workout Visual Summary**
+  Shows exactly where posture went wrong with saved frames and tips.
+
+* **Virtual Spotter (Emergency Safety)**
+  Detects the keyword **“HELP”** and stops the workout immediately.
+
+* **Emergency Assistance Automation**
+  Prompts calling **112** or emergency contacts instantly.
+
+---
+
+### 🍎 Nutrition & Health
+
+* **Food Label Scanner (OCR)**
+  Reads nutrition labels using AI and explains suitability.
+
+* **Diet Suitability Checker**
+  Evaluates food based on user goals and health profile.
+
+---
+
+### 🧠 Wellness Intelligence
+
+* **Stress-Adaptive Workouts**
+  Automatically lowers workout intensity based on fatigue or stress input.
+
+* **Overtraining Detection**
+  Warns users before burnout or injury.
+
+---
+
+## 🛠️ Tech Stack (Built using Kiro IDE)
+
+### Frontend
+
+* React 19
+* TypeScript
+* Tailwind CSS
+* HTML Canvas API
+
+### AI / ML
+
+| Feature          | Model / Tool                      |
+| ---------------- | --------------------------------- |
+| Pose & Reps      | MediaPipe Pose                    |
+| OCR              | Tesseract.js                      |
+| Wake-word Safety | Web Speech API / Vosk / Picovoice |
+| Adaptive Logic   | Rule-based intelligence           |
+
+### Backend
+
+* Firebase (Authentication & Firestore)
+
+🔹 Client-side AI for **privacy & low latency**
+🔹 Modular architecture for easy scaling
+
+---
+
+## ⚖️ Comparison: Popular Fitness Apps vs FitPulse
+
+| Feature                 | Popular Fitness Apps | FitPulse          |
+| ----------------------- | -------------------- | ----------------- |
+| Posture Correction      | ❌ Not available      | ✅ AI-based        |
+| Rep Counting            | ⚠️ Limited           | ✅ Automatic       |
+| Workout Safety          | ❌ None               | ✅ Virtual Spotter |
+| Emergency Help          | ❌ Not supported      | ✅ One-tap         |
+| Nutrition Understanding | ❌ Manual             | ✅ OCR-based       |
+| Stress-Based Adaptation | ❌ Generic plans      | ✅ Adaptive        |
+| Fitness + Health        | ❌ Separate apps      | ✅ Unified         |
+| Privacy                 | ⚠️ Cloud-based       | ✅ Client-side AI  |
+
+👉 **No mainstream app currently offers this full combination.**
+
+---
+
+## 🌍 Real-Life Impact & Outcomes
+
+### Impact
+
+* Safer workouts with fewer injuries
+* Fitness accessible to beginners and older adults
+* Better food and health awareness
+
+### Outcomes
+
+* Stress-adjusted workout routines
+* Early warnings for overtraining
+* Emergency safety during home workouts
+
+### Achieves in Real Life
+
+* Prevents burnout and long-term injuries
+* Encourages healthier daily habits
+* Replaces multiple fitness & health apps
+
+---
+
+## ⚙️ Installation & Run Instructions
 
 ### Prerequisites
-- Node.js 18+ installed
-- Modern browser (Chrome, Edge, Firefox, Safari)
-- Webcam (for pose detection)
-- Microphone (for voice detection)
 
-### Installation
+* Node.js 18+
+* Modern browser
+* Webcam (for posture detection)
+* Microphone (for Virtual Spotter)
+
+---
+
+### 1️⃣ Clone the Repository
 
 ```bash
-# Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/your-username/fitpulse.git
 cd fitpulse
+```
 
-# Install dependencies
+### 2️⃣ Install Dependencies
+
+```bash
 npm install
+```
 
-# Set up Firebase (optional - for auth)
-# Copy .env.example to .env and add your Firebase credentials
+### 3️⃣ Run the App
 
-# Start development server
+```bash
 npm run dev
 ```
 
-Visit `http://localhost:5173` and start your fitness journey!
+Visit 👉 **[http://localhost:5173](http://localhost:5173)**
 
 ---
 
-## 📚 Documentation
+## 🌍 Why Open Innovation Track?
 
-- **[FEATURES.md](FEATURES.md)** - Comprehensive feature documentation
-- **[QUICK_START.md](QUICK_START.md)** - User quick start guide
-- **[IMPLEMENTATION_GUIDE.md](IMPLEMENTATION_GUIDE.md)** - Technical implementation details
-- **[FEATURE_OVERVIEW.md](FEATURE_OVERVIEW.md)** - Visual feature map
-- **[IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)** - Executive summary
+FitPulse fits the **Open Innovation Track** because it:
 
----
-
-## 🎯 Features
-
-### ✅ Implemented (11/11)
-
-#### Fitness Features
-1. **AI Posture Detection** - Real-time form analysis with MediaPipe Pose
-2. **Rep Counting** - Automatic exercise repetition tracking
-3. **Virtual Spotter** - Voice-activated emergency detection ("HELP", "EMERGENCY")
-4. **Adaptive Intensity** - Personalized workout recommendations based on your state
-5. **Post-Workout Summary** - Detailed form analysis and improvement tips
-6. **Weekly Reports** - Comprehensive progress tracking and achievements
-
-#### Health Features
-7. **Food Label Scanner** - OCR-powered nutrition extraction
-8. **Diet Suitability Checker** - Evaluates food against your dietary goals
-9. **Habit Builder** - Smart reminders for hydration, stretching, posture, etc.
-10. **Emergency Assistance** - Quick-dial emergency contacts
-11. **Overtraining Detection** - Prevents burnout with intelligent analysis
+* Solves a real-world fitness + healthcare problem
+* Combines multiple domains using AI
+* Is platform-agnostic and scalable
+* Focuses on safety, inclusivity, and prevention
 
 ---
 
-## 🛠️ Tech Stack
+## 👥 Team – Team Jugaadu
 
-### Frontend
-- **React 19** - UI framework
-- **TypeScript** - Type safety
-- **Vite** - Build tool
-- **Tailwind CSS** - Styling
-- **Recharts** - Data visualization
-
-### AI/ML
-- **MediaPipe Pose** - Pose detection (Google)
-- **Tesseract.js** - OCR for food labels
-- **Web Speech API** - Voice recognition
-
-### Backend
-- **Firebase** - Authentication & Firestore
-
-### Key Features
-- ✅ **No API Keys Required** (except Firebase for auth)
-- ✅ **Privacy First** - All processing happens locally
-- ✅ **Offline Capable** - Most features work without internet
-- ✅ **Cross-Platform** - Works on desktop, tablet, and mobile
+* Deepkumar Das
+* Pranav Shirke
+* Gideon Mire
+* Vishal Gowda
 
 ---
 
-## 📱 Screenshots
+## 📌 Final Note
 
-### Fitness Dashboard
-- Real-time pose detection with skeleton overlay
-- Automatic rep counting
-- Form issue warnings
-- Emergency voice detection indicator
+FitPulse is not just a fitness app.
+It is a **preventive, intelligent, and safety-first wellness companion** built using AI.
 
-### Health Dashboard
-- Food label scanner with OCR
-- Nutrition facts display
-- Diet suitability scoring
-- Habit management
-
-### Reports & Analytics
-- Weekly progress reports
-- Achievement tracking
-- Improvement recommendations
-- Workout distribution charts
-
----
-
-## 🎮 How to Use
-
-### 1. Start a Workout
-```
-Dashboard → Launch Session → Fill Feedback → Select Exercise → Start!
-```
-
-### 2. Scan Food Labels
-```
-Health Dashboard → Scan Food Label → Take Photo → View Results
-```
-
-### 3. Set Up Habits
-```
-Health Dashboard → Habits → Enable Notifications → Toggle Habits
-```
-
-### 4. View Progress
-```
-Fitness Dashboard → Weekly Report → See Stats & Achievements
-```
-
----
-
-## 🔒 Privacy & Security
-
-- ✅ All pose detection runs **locally** (no video uploaded)
-- ✅ OCR processing is **client-side** (no images sent to servers)
-- ✅ Speech recognition uses **browser API** (no external services)
-- ✅ User data stored in **Firebase with authentication**
-- ✅ No third-party analytics or tracking
-
----
-
-## 🌐 Browser Support
-
-| Browser | Pose Detection | Voice Detection | OCR | Notifications |
-|---------|---------------|-----------------|-----|---------------|
-| Chrome 90+ | ✅ | ✅ | ✅ | ✅ |
-| Edge 90+ | ✅ | ✅ | ✅ | ✅ |
-| Firefox 88+ | ✅ | ⚠️ Limited | ✅ | ✅ |
-| Safari 14+ | ✅ | ⚠️ Limited | ✅ | ⚠️ Limited |
-
----
-
-## 📦 Project Structure
-
-```
-src/
-├── components/          # React components
-│   ├── ExerciseTracker.tsx
-│   ├── FoodScanner.tsx
-│   ├── HabitManager.tsx
-│   └── ...
-├── utils/              # Utility functions
-│   ├── formAnalyzer.ts
-│   ├── ocrScanner.ts
-│   ├── adaptiveWorkout.ts
-│   └── ...
-├── pages/              # Page components
-│   ├── DashboardFitness.tsx
-│   ├── DashboardHealth.tsx
-│   └── ...
-├── contexts/           # React contexts
-│   └── AuthContext.tsx
-└── types.ts           # TypeScript types
-```
-
----
-
-## 🚀 Deployment
-
-### Build for Production
-```bash
-npm run build
-```
-
-### Preview Production Build
-```bash
-npm run preview
-```
-
-### Deploy
-Upload the `dist/` folder to any static hosting:
-- Vercel
-- Netlify
-- Firebase Hosting
-- GitHub Pages
-- AWS S3 + CloudFront
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please read our contributing guidelines before submitting PRs.
-
-### Development Setup
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgments
-
-- **MediaPipe** - Google's pose detection library
-- **Tesseract.js** - OCR engine
-- **React Team** - Amazing framework
-- **Firebase** - Backend infrastructure
-
----
-
-## 📞 Support
-
-- 📧 Email: support@fitpulse.app
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/fitpulse/issues)
-- 📖 Docs: See documentation files in repo
-
----
-
-## 🎯 Roadmap
-
-### Completed ✅
-- [x] AI Posture Detection
-- [x] Rep Counting
-- [x] Virtual Spotter
-- [x] Food Scanner
-- [x] Adaptive Intensity
-- [x] Habit Builder
-- [x] Weekly Reports
-
-### Future Enhancements 🚧
-- [ ] Food image recognition (not just labels)
-- [ ] Symptom-to-risk analyzer
-- [ ] Audio stress detection
-- [ ] Multi-language support
-- [ ] Social features
-- [ ] Wearable integration
-
----
-
-## 📊 Stats
-
-- **Features:** 11 implemented
-- **Components:** 15+ React components
-- **Utilities:** 5 core utility modules
-- **Lines of Code:** 3,500+
-- **Build Time:** ~8 seconds
-- **Bundle Size:** 322 KB (gzipped)
-
----
-
-<div align="center">
-
-**Built with ❤️ for fitness enthusiasts**
-
-[Get Started](QUICK_START.md) • [Features](FEATURES.md) • [Documentation](IMPLEMENTATION_GUIDE.md)
-
-</div>
+> **That’s how we’re shaping FitPulse to be intelligent and safe.**
