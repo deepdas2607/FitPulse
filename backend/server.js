@@ -5,7 +5,7 @@ const { spawn } = require('child_process');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const db = require('./db');
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const { OpenAI } = require('openai');
 
 const app = express();
 app.use(cors());
@@ -216,46 +216,50 @@ app.post('/api/recommendations', authenticateToken, async (req, res) => {
         }
 
         let recommendation = "";
-        const apiKey = process.env.GEMINI_API_KEY;
+        const apiKey = process.env.AIML_API_KEY;
 
-        if (apiKey) {
-            // --- AI LOGIC ---
+
+        if (apiKey && apiKey !== 'your_key_here') {
+            // --- AI LOGIC (AIMLAPI) ---
             try {
-                const genAI = new GoogleGenerativeAI(apiKey);
-                const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" }); // Use lightweight flash model
+                const openai = new OpenAI({
+                    apiKey: apiKey,
+                    baseURL: "https://api.aimlapi.com/v1",
+                });
 
                 const prompt = `
-                    Act as a professional nutritionist and fitness coach. Generate a specific, healthy meal suggestion for a user with the following profile:
+                    Act as a professional nutritionist. Generate a specific, healthy meal suggestion for:
                     - Age: ${profile.age}
-                    - Gender: ${profile.gender}
-                    - Stats: ${profile.weight}kg, ${profile.height}cm
-                    - Activity Level: ${profile.activity_level}
                     - Goals: ${profile.goals}
-                    - Dietary Preferences: ${profile.dietary_preferences}
+                    - Dietary Breakdown: High Protein, Balanced.
                     
-                    The user has specifically reported:
-                    - Recent Workout: ${workoutInfo || "None specified"}
-                    - Specific Cravings/Requirements: ${requestDietary || "None specified"}
-                    - Custom Goals: ${customGoals || "None specified"}
-
-                    Provide a concise recommendation including:
-                    1. Name of the meal.
-                    2. Brief explanation of why it fits their goals and recent workout.
-                    3. Approximate macros (Protein, Carbs, Fats).
+                    User Info: ${workoutInfo || "No recent workout"}
+                    Request: ${requestDietary || "None"}
+                    
+                    Provide:
+                    1. Meal Name
+                    2. Why it fits
+                    3. Macros (Protein/Carb/Fat)
                     Keep it under 150 words.
                 `;
 
-                const result = await model.generateContent(prompt);
-                const response = await result.response;
-                recommendation = response.text();
+                const chatCompletion = await openai.chat.completions.create({
+                    model: "gpt-4o",
+                    messages: [{ role: "user", content: prompt }],
+                    temperature: 0.7,
+                    max_tokens: 250,
+                });
+
+                recommendation = chatCompletion.choices[0].message.content;
+
             } catch (aiError) {
-                console.error("Gemini AI Error:", aiError);
-                recommendation = "AI Service temporarily unavailable. " + getFallbackRecommendation(profile);
+                console.error("AIMLAPI Error:", aiError);
+                recommendation = "AI Service unavailable. " + getFallbackRecommendation(profile);
             }
         } else {
             // --- FALLBACK LOGIC ---
-            console.log("No GEMINI_API_KEY found, using fallback.");
-            recommendation = getFallbackRecommendation(profile) + "\n(Note: Add GEMINI_API_KEY to .env for AI suggestions)";
+            console.log("No AIML_API_KEY found.");
+            recommendation = getFallbackRecommendation(profile);
         }
 
         // Save recommendation
@@ -271,7 +275,7 @@ app.post('/api/recommendations', authenticateToken, async (req, res) => {
     }
 });
 
-// Chatbot Endpoint
+// Chatbot Endpoint (Refactored to OpenAI/AIMLAPI)
 app.post('/api/chat', authenticateToken, async (req, res) => {
     const { message, history } = req.body;
     const userId = req.user.userId;
@@ -281,13 +285,36 @@ app.post('/api/chat', authenticateToken, async (req, res) => {
         const profileRes = await db.query('SELECT * FROM user_profiles WHERE user_id = $1', [userId]);
         const profile = profileRes.rows[0] || {};
 
-        const apiKey = process.env.GEMINI_API_KEY;
+        // Determine API setup
+        let apiKey = process.env.OPENAI_API_KEY;
+        let baseURL = undefined; // Default to OpenAI official
+
+        // If OPENAI_API_KEY is not set, check AIML_API_KEY
         if (!apiKey) {
+            const fallbackKey = process.env.AIML_API_KEY;
+            if (fallbackKey && fallbackKey.startsWith('sk-')) {
+                // User put OpenAI key in AIML variable
+                console.log('Detected OpenAI key in AIML_API_KEY');
+                apiKey = fallbackKey;
+                baseURL = undefined; // Force standard OpenAI
+            } else if (fallbackKey) {
+                // Assume it is AIML
+                apiKey = fallbackKey;
+                baseURL = "https://api.aimlapi.com/v1";
+            }
+        } else if (apiKey.startsWith('sk-')) {
+            baseURL = undefined; // Ensure OpenAI key uses standard URL
+        }
+
+        if (!apiKey || apiKey === 'your_key_here') {
+            console.error('Missing API Key. OPENAI_API_KEY:', process.env.OPENAI_API_KEY ? 'Set' : 'Unset', 'AIML_API_KEY:', process.env.AIML_API_KEY ? 'Set' : 'Unset');
             return res.status(503).json({ error: 'AI Service unavailable (Missing API Key)' });
         }
 
-        const genAI = new GoogleGenerativeAI(apiKey);
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        const openai = new OpenAI({
+            apiKey: apiKey,
+            baseURL: baseURL,
+        });
 
         // System Instruction
         const systemInstruction = `
@@ -303,35 +330,32 @@ app.post('/api/chat', authenticateToken, async (req, res) => {
             1. Provide accurate, science-backed fitness and nutrition advice.
             2. Be motivating and supportive.
             3. If asked about medical symptoms, ALWAYS advise seeing a doctor.
-            4. Keep responses concise and easy to read.
-            5. Do NOT generate long generic articles; answer the specific question.
+            4. Keep responses concise and easy to read, but detailed enough to be useful.
+            5. If asked for a plan (workout/meal), provide a structured list.
         `;
 
-        const chat = model.startChat({
-            history: [], // Temporarily disable history to rule out formatting errors
-            generationConfig: {
-                maxOutputTokens: 500,
-            },
+        // Format history for OpenAI (map 'model' -> 'assistant')
+        const previousMessages = (history || []).map(msg => ({
+            role: msg.role === 'model' ? 'assistant' : 'user',
+            content: msg.content
+        }));
+
+        const chatCompletion = await openai.chat.completions.create({
+            model: "gpt-4o",
+            messages: [
+                { role: "system", content: systemInstruction },
+                ...previousMessages,
+                { role: "user", content: message }
+            ],
+            temperature: 0.7,
+            max_tokens: 1000,
         });
 
-        // Manual Prompt Injection (Old school, most compatible)
-        const finalPrompt = `${systemInstruction}\n\nUser Question: ${message}`;
-
-        try {
-            const result = await chat.sendMessage(finalPrompt);
-            const response = await result.response;
-            const text = response.text();
-            res.json({ response: text });
-        } catch (aiError) {
-            console.error("Gemini Generation Error:", aiError);
-            res.json({ response: "I'm sorry, I'm having trouble connecting to my AI brain right now. Please check my connectivity or try again later. (Error: Model Unavailable)" });
-        }
+        const responseText = chatCompletion.choices[0].message.content;
+        res.json({ response: responseText });
 
     } catch (err) {
         console.error("Chat API Error:", err);
-        if (err.response) {
-            console.error("Gemini API Error Details:", JSON.stringify(err.response, null, 2));
-        }
         res.status(500).json({ error: 'Failed to generate response', details: err.message });
     }
 });

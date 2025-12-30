@@ -96,7 +96,27 @@ DISEASE_RULES = {
     'loss of appetite,nausea,fatigue,weakness,dizziness': 'Gastritis',
     'weakness,fatigue,dizziness,headache,insomnia': 'Anemia',
     'chills,fever,headache,muscle pain,fatigue': 'Flu',
-    'sweating,anxiety,insomnia,headache,fatigue': 'Anxiety'
+    'sweating,anxiety,insomnia,headache,fatigue': 'Anxiety',
+
+    # Gym / Workout Related
+    'muscle cramps': 'Dehydration / Electrolyte Imbalance',
+    'joint stiffness': 'Delayed Onset Muscle Soreness (DOMS)',
+    'lower back pain': 'Muscle Strain / Poor Form',
+    'shin splints': 'Medial Tibial Stress Syndrome',
+    'dehydration': 'Severe Dehydration',
+    'excessive fatigue': 'Overtraining Syndrome',
+    'rotator cuff pain': 'Rotator Cuff Tendinitis',
+    
+    # Gym Combinations
+    'muscle cramps,dehydration': 'Heat Exhaustion',
+    'muscle cramps,excessive fatigue': 'Electrolyte Depletion',
+    'joint stiffness,muscle pain': 'DOMS',
+    'lower back pain,muscle pain': 'Lumbar Strain',
+    'shin splints,muscle pain': 'Overuse Injury',
+    'rotator cuff pain,joint pain': 'Shoulder Impingement',
+    'excessive fatigue,weakness': 'Overtraining',
+    'dehydration,dizziness': 'Heat Exhaustion',
+    'muscle cramps,sweating': 'Exercise-Induced Cramping'
 }
 
 # Additional symptom combinations with probabilities
@@ -195,6 +215,41 @@ SYMPTOM_PROBABILITIES = {
         'Anxiety': 0.5,
         'Viral Infection': 0.3,
         'Heart Condition': 0.2
+    },
+    'muscle cramps': {
+        'Dehydration': 0.6,
+        'Muscle Fatigue': 0.3,
+        'Electrolyte Imbalance': 0.1
+    },
+    'joint stiffness': {
+        'DOMS': 0.5,
+        'Arthritis': 0.3,
+        'Inactivity': 0.2
+    },
+    'lower back pain': {
+        'Muscle Strain': 0.6,
+        'Herniated Disc': 0.2,
+        'Poor Posture': 0.2
+    },
+    'shin splints': {
+        'Overuse Injury': 0.7,
+        'Stress Fracture': 0.2,
+        'Poor Footwear': 0.1
+    },
+    'dehydration': {
+        'Heat Exhaustion': 0.5,
+        'Viral Infection': 0.3,
+        'Diabetes': 0.2
+    },
+    'excessive fatigue': {
+        'Overtraining': 0.5,
+        'Anemia': 0.3,
+        'Viral Infection': 0.2
+    },
+    'rotator cuff pain': {
+        'Tendinitis': 0.6,
+        'Tear': 0.3,
+        'Bursitis': 0.1
     }
 }
 
