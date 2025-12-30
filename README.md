@@ -32,86 +32,88 @@ Unlike traditional fitness apps that only track workouts, FitPulse focuses on **
 
 ## ❗ Problem We Address
 
-Today’s fitness and health ecosystem is fragmented:
-
-* Fitness apps don’t correct posture → injuries happen
+* Incorrect workout posture leading to injuries
 * No safety system for people exercising alone at home
-* Nutrition labels are confusing for everyday users
-* Workouts are generic and ignore stress or fatigue
-* Users juggle multiple apps for fitness, food, and health
-
-This leads to unsafe workouts, burnout, and poor health decisions.
+* Nutrition labels are difficult to understand
+* Generic workouts that ignore stress and fatigue
+* Multiple disconnected apps for fitness, food, and health
 
 ---
 
 ## 💡 Our Solution
 
-**FitPulse brings fitness, health, nutrition, and safety together in one AI-driven platform.**
+FitPulse unifies **fitness + health + safety** by offering:
 
-We focus on:
-
-* Correct exercise posture and injury prevention
-* Emergency safety during solo workouts
-* Simple nutrition understanding using AI
+* AI-based posture correction and rep counting
+* Emergency safety through voice detection
+* OCR-based nutrition understanding
 * Stress-adaptive workout recommendations
 * Preventive health awareness instead of reactive care
 
 ---
 
-## 🖼️ Screenshots
+## 📱 Screenshots
 
-### Landing Page
+### Fitness Dashboard
 
-![Landing Page](assets/landing-page.png)
+![Fitness Dashboard](assets/fitness-tracker.png)
+
+* Real-time pose detection with skeleton overlay
+* Automatic rep counting
+* Form issue warnings
+* Emergency voice detection indicator
+
+---
 
 ### Health Dashboard
 
 ![Health Dashboard](assets/health-dashboard.png)
 
-### AI Form Correction (Fitness Tracker)
-
-![Fitness Tracker](assets/fitness-tracker.png)
+* Food label scanner with OCR
+* Nutrition facts display
+* Diet suitability scoring
+* Habit management
 
 ---
 
-## ⭐ Core Features (MVP Focus)
+### Landing Page
 
-### 🏋️ AI Fitness & Safety
+![Landing Page](assets/landing-page.png)
+
+* Clean onboarding experience
+* Clear value proposition
+* Quick access to core features
+
+---
+
+### Reports & Analytics *(Feature-ready)*
+
+* Weekly progress reports
+* Achievement tracking
+* Improvement recommendations
+* Workout distribution charts
+
+---
+
+## ⭐ Core Features
+
+### 🏋️ Fitness & Safety
 
 * **AI Posture Detection & Form Correction**
-  Detects incorrect posture using pose estimation and joint-angle rules.
-
 * **Automatic Rep Counting**
-  Counts repetitions in real time without manual input.
-
 * **Post-Workout Visual Summary**
-  Shows exactly where posture went wrong with saved frames and tips.
-
-* **Virtual Spotter (Emergency Safety)**
-  Detects the keyword **“HELP”** and stops the workout immediately.
-
-* **Emergency Assistance Automation**
-  Prompts calling **112** or emergency contacts instantly.
-
----
+* **Virtual Spotter (“HELP” keyword detection)**
+* **Emergency Assistance Prompt**
 
 ### 🍎 Nutrition & Health
 
 * **Food Label Scanner (OCR)**
-  Reads nutrition labels using AI and explains suitability.
-
 * **Diet Suitability Checker**
-  Evaluates food based on user goals and health profile.
-
----
 
 ### 🧠 Wellness Intelligence
 
 * **Stress-Adaptive Workouts**
-  Automatically lowers workout intensity based on fatigue or stress input.
-
 * **Overtraining Detection**
-  Warns users before burnout or injury.
 
 ---
 
@@ -126,36 +128,125 @@ We focus on:
 
 ### AI / ML
 
-| Feature          | Model / Tool                      |
-| ---------------- | --------------------------------- |
-| Pose & Reps      | MediaPipe Pose                    |
-| OCR              | Tesseract.js                      |
-| Wake-word Safety | Web Speech API / Vosk / Picovoice |
-| Adaptive Logic   | Rule-based intelligence           |
+* **MediaPipe Pose** – posture & rep detection
+* **Tesseract.js** – nutrition OCR
+* **Web Speech API / Vosk / Picovoice** – voice safety
+* **Rule-based intelligence** – adaptive workout logic
 
 ### Backend
 
 * Firebase (Authentication & Firestore)
 
-🔹 Client-side AI for **privacy & low latency**
-🔹 Modular architecture for easy scaling
+🔒 **Client-side AI ensures privacy & low latency**
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+* Node.js 18+
+* Modern browser (Chrome, Edge, Firefox, Safari)
+* Webcam (pose detection)
+* Microphone (Virtual Spotter)
+
+### Installation
+
+```bash
+git clone <your-repo-url>
+cd fitpulse
+npm install
+npm run dev
+```
+
+Visit 👉 **[http://localhost:5173](http://localhost:5173)**
+
+---
+
+## 🎮 How to Use
+
+### Start a Workout
+
+Dashboard → Launch Session → Fill Feedback → Select Exercise → Start
+
+### Scan Food Labels
+
+Health Dashboard → Scan Food Label → Take Photo → View Results
+
+### Set Habits
+
+Health Dashboard → Habits → Enable Notifications → Toggle Habits
+
+### View Progress
+
+Fitness Dashboard → Weekly Report → See Stats & Achievements
+
+---
+
+## 🔒 Privacy & Security
+
+* Pose detection runs **locally**
+* OCR processing is **client-side**
+* No external speech services required
+* User data stored securely using Firebase
+* No third-party analytics or tracking
+
+---
+
+## 🌐 Browser Support
+
+| Browser | Pose | Voice      | OCR | Notifications |
+| ------- | ---- | ---------- | --- | ------------- |
+| Chrome  | ✅    | ✅          | ✅   | ✅             |
+| Edge    | ✅    | ✅          | ✅   | ✅             |
+| Firefox | ✅    | ⚠️ Limited | ✅   | ✅             |
+| Safari  | ✅    | ⚠️ Limited | ✅   | ⚠️ Limited    |
+
+---
+
+## 📦 Project Structure
+
+```
+src/
+├── components/      # UI components
+├── utils/           # AI logic & helpers
+├── pages/           # Fitness & Health dashboards
+├── contexts/        # Authentication context
+└── types.ts
+```
+
+---
+
+## 🚀 Deployment
+
+```bash
+npm run build
+npm run preview
+```
+
+Deploy the `dist/` folder to:
+
+* Vercel
+* Netlify
+* Firebase Hosting
+* GitHub Pages
+* AWS S3 + CloudFront
 
 ---
 
 ## ⚖️ Comparison: Popular Fitness Apps vs FitPulse
 
-| Feature                 | Popular Fitness Apps | FitPulse          |
-| ----------------------- | -------------------- | ----------------- |
-| Posture Correction      | ❌ Not available      | ✅ AI-based        |
-| Rep Counting            | ⚠️ Limited           | ✅ Automatic       |
-| Workout Safety          | ❌ None               | ✅ Virtual Spotter |
-| Emergency Help          | ❌ Not supported      | ✅ One-tap         |
-| Nutrition Understanding | ❌ Manual             | ✅ OCR-based       |
-| Stress-Based Adaptation | ❌ Generic plans      | ✅ Adaptive        |
-| Fitness + Health        | ❌ Separate apps      | ✅ Unified         |
-| Privacy                 | ⚠️ Cloud-based       | ✅ Client-side AI  |
+| Feature            | Popular Apps | FitPulse  |
+| ------------------ | ------------ | --------- |
+| Posture Correction | ❌            | ✅         |
+| Rep Counting       | ⚠️ Limited   | ✅         |
+| Emergency Safety   | ❌            | ✅         |
+| Nutrition OCR      | ❌            | ✅         |
+| Stress Adaptation  | ❌            | ✅         |
+| Fitness + Health   | ❌ Separate   | ✅ Unified |
+| Privacy-first AI   | ❌            | ✅         |
 
-👉 **No mainstream app currently offers this full combination.**
+👉 **No mainstream app currently offers this complete combination.**
 
 ---
 
@@ -165,7 +256,7 @@ We focus on:
 
 * Safer workouts with fewer injuries
 * Fitness accessible to beginners and older adults
-* Better food and health awareness
+* Improved food and health awareness
 
 ### Outcomes
 
@@ -181,48 +272,12 @@ We focus on:
 
 ---
 
-## ⚙️ Installation & Run Instructions
-
-### Prerequisites
-
-* Node.js 18+
-* Modern browser
-* Webcam (for posture detection)
-* Microphone (for Virtual Spotter)
-
----
-
-### 1️⃣ Clone the Repository
-
-```bash
-git clone https://github.com/your-username/fitpulse.git
-cd fitpulse
-```
-
-### 2️⃣ Install Dependencies
-
-```bash
-npm install
-```
-
-### 3️⃣ Run the App
-
-```bash
-npm run dev
-```
-
-Visit 👉 **[http://localhost:5173](http://localhost:5173)**
-
----
-
 ## 🌍 Why Open Innovation Track?
 
-FitPulse fits the **Open Innovation Track** because it:
-
-* Solves a real-world fitness + healthcare problem
-* Combines multiple domains using AI
-* Is platform-agnostic and scalable
-* Focuses on safety, inclusivity, and prevention
+* Solves real-world fitness + healthcare gaps
+* Combines AI, safety, and wellness
+* Platform-agnostic and scalable
+* Focused on preventive and inclusive care
 
 ---
 
@@ -237,7 +292,7 @@ FitPulse fits the **Open Innovation Track** because it:
 
 ## 📌 Final Note
 
-FitPulse is not just a fitness app.
-It is a **preventive, intelligent, and safety-first wellness companion** built using AI.
+FitPulse is not just a fitness app —
+it is a **preventive, intelligent, safety-first wellness companion**.
 
 > **That’s how we’re shaping FitPulse to be intelligent and safe.**
