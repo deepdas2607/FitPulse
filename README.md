@@ -283,10 +283,10 @@ Deploy the `dist/` folder to:
 
 ## 👥 Team – Team Jugaadu
 
+* Vishal Gowda
 * Deepkumar Das
 * Pranav Shirke
 * Gideon Mire
-* Vishal Gowda
 
 ---
 
